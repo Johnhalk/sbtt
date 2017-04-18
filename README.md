@@ -23,7 +23,7 @@ acc.create_debit
 ```
 And follow the prompts on screen input.
 
-- Then Withdraw until under balance is lower than theoretical balance:
+- Then Withdraw until balance is lower than theoretical balance:
 
 ```
 acc.withdraw(100)
