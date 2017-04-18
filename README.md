@@ -14,7 +14,7 @@ I want to be able to be notified when my balance runs too low to pay my remainin
 - Clone this repo
 - Run 'bundle' in project root directory
 - open with 'irb' in the command line
-- Create a debit of 50:
+- Type in the following commands to create a debit of 50:
 ```
 require './lib/account'
 acc = Account.new
@@ -23,7 +23,7 @@ acc.create_debit
 ```
 And follow the prompts on screen input.
 
-- Withdraw until under balance is lower than theoretical balance:
+- Then Withdraw until under balance is lower than theoretical balance:
 
 ```
 acc.withdraw(100)
