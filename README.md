@@ -1,4 +1,4 @@
-#Implementing feature
+##Implementing feature
 
 
 ```
@@ -6,5 +6,26 @@ Initial concept features
 
 As a customer,
 So that I can better utilise my monthly spending
-I want to be able to see what my theoretical balance is after pending direct debits for the month.
+I want to be able to be notified when my balance runs too low to pay my remaining monthly direct debits.
+```
+
+## Usage
+
+- Clone this repo
+- Run 'bundle' in project root directory
+- open with 'irb' in the command line
+- Create a debit of 50:
+```
+require './lib/account'
+acc = Account.new
+acc.deposit(200)
+acc.create_debit
+```
+And follow the prompts on screen input.
+
+- Withdraw until under balance is lower than theoretical balance:
+
+```
+acc.withdraw(100)
+acc.withdraw(70)
 ```

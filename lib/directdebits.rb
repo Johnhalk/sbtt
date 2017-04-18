@@ -22,7 +22,7 @@ class Directdebits
         retry
       end
       begin
-        print 'Please enter the date you wish the amount to be debited:'
+        print 'Please enter the date (DD/MM/YYY) you wish the amount to be debited:'
         debit_date = gets.chomp
         @debit_date = Date.strptime(debit_date ,'%d/%m/%Y')
       rescue

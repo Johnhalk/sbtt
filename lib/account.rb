@@ -15,6 +15,7 @@ class Account
   def initialize(balance = DEFAULT_BALANCE)
     @balance = balance
     @debit_balance = 0
+    @balance_after_upcomming_debits = 0
     @transactions = Transactions.new
     @debits = Directdebits.new
   end
@@ -27,12 +28,15 @@ class Account
   end
 
   def withdraw(amount)
-    message_one = 'Can not exceed available funds.'
-    message_two = 'Can not withdraw past maximum limit.'
+    message_one = "Can not exceed available funds."
+    message_two = "Can not withdraw past maximum limit."
+    message_three = "Warning, insufficient funds to pay your upcomming monthly direct debits"
     raise message_one if amount > @balance
     raise message_two if amount > MAX_WITHDRAW_AMOUNT
     @balance -= amount
     @transactions.transaction_history << { date: Time.new.strftime('%d/%m/%Y'), credit: '', debit: amount , balance: @balance }
+    raise message_three if @balance < pending_debits
+    @balance
   end
 
   def display_transactions
@@ -43,13 +47,12 @@ class Account
     @debits.create_debit
   end
 
-  def balance_after_debits
+  def pending_debits
     @debits.pending_debits
   end
 
-  def pending_debits
-    balance_after_debits =  @balance - @debits.pending_debits
-    p "Your current balance for the month, after pending debits is: £ #{balance_after_debits}"
+  def balance_after_upcomming_debits
+    @balance_after_upcomming_debits = @balance - @debits.pending_debits
   end
 
   def statement
